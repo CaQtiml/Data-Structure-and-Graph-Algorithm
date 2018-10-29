@@ -39,7 +39,7 @@ int main()
 		}
 	}
 	(bpt==true) ? cout << "yes" : cout << "no";
-	//cout << "A";
+	
 }
 
 //doesn't test with strong testcase
