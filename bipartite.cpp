@@ -15,7 +15,6 @@ int main()
 		adj[a].emplace_back(b);
 		adj[b].emplace_back(a);
 	}
-	//cout << "a";
 	queue<int>q;
 	q.push(1);
 	color[1]=0;
