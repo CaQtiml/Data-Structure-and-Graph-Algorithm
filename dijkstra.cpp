@@ -6,8 +6,8 @@ typedef  vector<pair<int,int>> vii;
 #define INF 1000000000
 #define pb emplace_back
 #define mkp make_pair
-//vector<ii> adj[1000000]; (for 1million node graph)
-//dist[1000000]; (for 1million node graph)
+//vector<ii> adj[1000000]; (for 1million node graph) ----->(1)
+//dist[1000000]; (for 1million node graph) ------>(2)
 int main()
 {
     int V,E,s,u,v,w;
@@ -19,8 +19,8 @@ int main()
         adj[u].pb(ii(v,w)); 
         adj[v].pb(ii(u,w));
     }
-    vi dist(V+5,INF);
-    dist[s]=0;
+    vi dist(V+5,INF); //---->(1)
+    dist[s]=0; //------->(2)
     priority_queue<ii,vector<ii>,greater<ii>> pq;
     pq.emplace(ii(0,s));
     while(pq.size()){
