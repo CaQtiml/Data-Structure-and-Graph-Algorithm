@@ -6,6 +6,8 @@ typedef  vector<pair<int,int>> vii;
 #define INF 1000000000
 #define pb emplace_back
 #define mkp make_pair
+//vector<ii> adj[1000000]; (for 1million node graph)
+//dist[1000000]; (for 1million node graph)
 int main()
 {
     int V,E,s,u,v,w;
@@ -14,7 +16,8 @@ int main()
     adj.assign(V+5,vii());
     for(int i=0;i<E;i++){
         cin >> u >> v >> w;
-        adj[u].pb(ii(v,w)); // directed graph
+        adj[u].pb(ii(v,w)); 
+        adj[v].pb(ii(u,w));
     }
     vi dist(V+5,INF);
     dist[s]=0;
