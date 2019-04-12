@@ -1,21 +1,8 @@
 #include "bits/stdc++.h"
 using namespace std;
 vector<int> adj[600000];
-bool visit[600000];
-void dfs(int u)
-{
-	for(auto v : adj[u])
-	{
-		if(visit[v]) 
-		{
-			cout << "LOOP";
-			exit(0);
-		}
-		visit[v]=1;
-		dfs(v);
-		visit[v]=0;
-	}
-}
+int deg[600000];
+
 int main()
 {
 	ios_base::sync_with_stdio(false);
@@ -27,14 +14,35 @@ int main()
 		int u,v;
 		cin >> u >> v ;
 		adj[u].emplace_back(v);
+		//adj[v].emplace_back(u);
+		//deg[u]++;
+		deg[v]++;
 	}
-	
+	queue<int> q;
 	for(int i=1;i<=N;i++)
 	{
-		visit[i]=1;
-		dfs(i);
-		visit[i]=0;
+		if(deg[i]==0) q.emplace(i);
 	}
-	cout << "NO LOOP";
+	while(!q.empty())
+	{
+		int u = q.front();
+		q.pop();
+		for(auto v : adj[u])
+		{
+			if(deg[v]>0)
+			{
+				//deg[u]--;
+				if(--deg[v]==0)
+				{
+					q.emplace(v);
+				}
+			}
+		}
+	}
+	for(int i=1;i<=N;i++)
+	{
+		cout << deg[i] << "\n";
+	}
+	//cout << "NO LOOP";
 }
 //doesn't test with strong testcase
